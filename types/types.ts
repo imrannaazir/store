@@ -29,11 +29,11 @@ export interface Image {
 
 export interface Product {
   id: string;
-  category: Category;
   name: string;
   price: string;
   isFeatured: boolean;
-  size: Size;
+  category: Category;
   color: Color;
+  size: Size;
   images: Image[];
 }
