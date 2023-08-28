@@ -26,8 +26,14 @@ const PreviewModal = () => {
       "
       >
         {/* gallery */}
-        <Gallery images={data.images} />
+        <div className="sm:col-span-4 lg:col-span-5">
+          <Gallery images={data.images} />
+        </div>
+
         {/* info */}
+        <div className="col-span-8 lg:col-span-7">
+          <Info />
+        </div>
       </div>
     </Modal>
   );

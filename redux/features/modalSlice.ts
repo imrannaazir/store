@@ -28,4 +28,4 @@ const previewModalSlice = createSlice({
 });
 
 export const { openModal, closeModal } = previewModalSlice.actions;
-export default previewModalSlice;
+export default previewModalSlice.reducer;
