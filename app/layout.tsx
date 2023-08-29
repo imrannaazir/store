@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import Navbar from "@/components/navbar/navbar";
 import ToastProvider from "@/providers/toast-provider";
+import ReduxProvider from "@/redux/redux-provider";
+import ModalProvider from "@/providers/modal-provider";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -21,9 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToastProvider />
-        <Navbar />
-        {children}
-        <Footer />
+        <ReduxProvider>
+          <ModalProvider />
+          <Navbar />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

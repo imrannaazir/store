@@ -7,6 +7,10 @@ import { Expand, ShoppingCart } from "lucide-react";
 import Currency from "./Currency";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { openModal } from "@/redux/features/modalSlice";
+import { addItem } from "@/redux/features/cartSlice";
 
 interface ProductCardProps {
   data: ProductType;
@@ -14,6 +18,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleClick = () => {
     router.push(`/product/${data?.id}`);
@@ -21,10 +26,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
+
+    dispatch(openModal(data));
   };
 
   const onAddToCard: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
+    dispatch(addItem(data));
   };
   return (
     <div

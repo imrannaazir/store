@@ -19,11 +19,12 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      if (existingItem) {
+      if (existingItem?.id) {
         toast.error("Item already in the cart");
+      } else {
+        state.items.push(action.payload);
+        toast.success("Item added to the cart.");
       }
-      state.items.push(action.payload);
-      toast.success("Item added to the cart.");
     },
 
     removeItem: (state, action: PayloadAction<ProductType>) => {

@@ -3,10 +3,11 @@ import Modal from "./ui/modal";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { closeModal } from "@/redux/features/modalSlice";
 import Gallery from "./gallery";
+import Info from "./info";
 
 const PreviewModal = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isOpen, data } = useAppSelector((state) => state.previewModal);
+  const { isOpen, data } = useAppSelector((state) => state.modal);
 
   if (!data) {
     return null;
@@ -32,7 +33,7 @@ const PreviewModal = () => {
 
         {/* info */}
         <div className="col-span-8 lg:col-span-7">
-          <Info />
+          <Info data={data} />
         </div>
       </div>
     </Modal>

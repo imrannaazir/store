@@ -18,6 +18,7 @@ const previewModalSlice = createSlice({
     openModal: (state, action: PayloadAction<Product>) => {
       state.isOpen = true;
       state.data = action.payload;
+      console.log(state);
     },
 
     closeModal: (state) => {
