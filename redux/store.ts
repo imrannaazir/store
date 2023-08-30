@@ -1,16 +1,15 @@
-"use client";
-
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import rootReducer from "./rootReducer";
+import persistConfig from "./persistConfig";
 
 const middleware = [...getDefaultMiddleware()];
 
-const persistedReducer = persistReducer;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware,
   devTools: process.env.NODE_ENV !== "production",
 });
