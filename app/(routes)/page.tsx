@@ -10,8 +10,6 @@ export default async function HomePage() {
   const products = await getProducts({});
   const billboard = await getBillboard("64e6b4c8723e833c7f769462");
 
-  console.log(products);
-
   return (
     <Container>
       <div className="space-y-10 pb-10">
