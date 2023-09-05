@@ -4,6 +4,8 @@ import getSizes from "@/actions/get-sizes";
 import getColors from "@/actions/getColors";
 import Billboard from "@/components/ui/billboard";
 import Container from "@/components/ui/container";
+import MobileFilters from "./components/mobile-filters";
+import Filter from "./components/filter";
 
 export const revalidate = 0;
 
@@ -38,6 +40,13 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
         <div className="px-4 sm:px-6 lg:px-8 pb-24">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
             {/* <MobileFilters/> */}
+            <MobileFilters colors={colors} sizes={sizes} />
+
+            {/* lg screen filters */}
+            <div className="hidden lg:block">
+              <Filter data={sizes} name="Sizes" valueKey="sizeId" />
+              <Filter data={colors} name="Colors" valueKey="colorId" />
+            </div>
           </div>
         </div>
       </Container>
