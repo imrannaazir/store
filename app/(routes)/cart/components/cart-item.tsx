@@ -1,15 +1,21 @@
 import Currency from "@/components/ui/Currency";
 import IconButton from "@/components/ui/icon-button";
+import { removeItem } from "@/redux/features/cartSlice";
+import { AppDispatch } from "@/redux/store";
 import { Product } from "@/types/types";
 import { X } from "lucide-react";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 
 interface CartItemProps {
   data: Product;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
-  const onRemove = () => {};
+  const dispatch = useDispatch<AppDispatch>();
+  const onRemove = () => {
+    dispatch(removeItem(data));
+  };
 
   return (
     <li className="flex py-6 border-b">

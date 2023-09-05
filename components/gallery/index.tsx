@@ -1,3 +1,5 @@
+"use client";
+
 import { Image as ImageType } from "@/types/types";
 import { Tab } from "@headlessui/react";
 import GalleryTab from "./gallery.tab";
