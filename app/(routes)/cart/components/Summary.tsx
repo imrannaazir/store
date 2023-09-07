@@ -1,15 +1,53 @@
+"use client";
+
 import Currency from "@/components/ui/Currency";
 import Button from "@/components/ui/button";
-import { useAppSelector } from "@/redux/store";
+import { removeAll } from "@/redux/features/cartSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import axios from "axios";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const Summary = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const searchParams = useSearchParams();
   const items = useAppSelector((state) => state.cart.items);
 
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);
 
-  const onCheckout = () => {};
+  useEffect(() => {
+    if (searchParams.get("success")) {
+      toast.success("Payment completed.");
+      dispatch(removeAll());
+    }
+
+    if (searchParams.get("canceled")) {
+      toast.error("Something went wrong.");
+    }
+  }, [dispatch, searchParams]);
+
+  const onCheckout = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        {
+          productIds: items.map((item) => item.id),
+        }
+      );
+
+      window.location = response.data.url;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div
       className="
@@ -33,10 +71,10 @@ const Summary = () => {
 
       <Button
         onClick={onCheckout}
-        disabled={items.length === 0}
+        disabled={items.length === 0 || isLoading}
         className="w-full mt-6"
       >
-        Checkout
+        {isLoading ? "Loading.." : "Checkout"}
       </Button>
     </div>
   );
