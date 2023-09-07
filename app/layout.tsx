@@ -13,8 +13,8 @@ import { persistor } from "@/redux/store";
 const font = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Store",
-  description: "Store",
+  title: "GlossaryFy",
+  description: "Store of glossary products.",
 };
 
 export default function RootLayout({
