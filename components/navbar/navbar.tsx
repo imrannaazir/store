@@ -9,6 +9,7 @@ export const revalidate = 0;
 
 const Navbar = async () => {
   const categories = await getCategories();
+  const x = "Apple";
 
   return (
     <div className="border-b">
@@ -27,7 +28,7 @@ const Navbar = async () => {
             <p className="font-bold text-xl">STORE</p>
           </Link>
 
-          <MainNav data={categories} />
+          <MainNav data={categories} x={x} />
 
           <NavbarActions />
         </div>
