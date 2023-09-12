@@ -31,7 +31,7 @@ export default function RootLayout({
           {/* <PersistGate loading={null} persistor={persistor}> */}
           <ModalProvider />
           <Header />
-          {/* <Navbar /> */}
+          <Navbar />
           {children}
           <Footer />
           {/* </PersistGate> */}
