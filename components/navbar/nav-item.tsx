@@ -1,8 +1,7 @@
 "use client";
-import * as lucide from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import useIcon from "@/hooks/useIcon";
+import Icon from "@/components/icon";
 
 interface NavItemProps {
   route: {
@@ -16,8 +15,9 @@ interface NavItemProps {
 const NavItem: React.FC<NavItemProps> = ({
   route: { href, icon, isActive, label },
 }) => {
-  const iconName = useIcon(icon);
-  const CollectionIcon = lucide[iconName];
+  const iconName = icon.trim(); //invoked  hook
+
+  console.log(iconName);
 
   return (
     <Link
@@ -28,13 +28,19 @@ const NavItem: React.FC<NavItemProps> = ({
                 text-sm
                 font-medium
                 transition-colors
-                hover:text-black`,
-        isActive ? "text-black" : "text-neutral-500"
+                hover:text-black
+                flex
+                flex-col
+                justify-center
+                items-center 
+                p-4 `,
+        isActive
+          ? "text-black border-b-[3px] border-b-primary"
+          : "text-neutral border-b-[3px] border-b-transparent"
       )}
     >
+      <Icon name={iconName} strokeWidth={1} />
       {label}
-
-      <CollectionIcon />
     </Link>
   );
 };
