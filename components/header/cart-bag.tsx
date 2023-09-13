@@ -45,7 +45,7 @@ export default function CartBag() {
       w-5
       h-5
       rounded-full
-      bg-secondary
+      bg-primary
       text-white
       font-extrabold
       -top-1
@@ -56,7 +56,7 @@ export default function CartBag() {
       text-xs
       "
       >
-        <span>{cart.items.length}</span>
+        <span className="">{cart.items.length}</span>
       </div>
     </button>
   );
