@@ -9,6 +9,7 @@ import ReduxProvider from "@/redux/redux-provider";
 import ModalProvider from "@/providers/modal-provider";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "@/redux/store";
+import Header from "@/components/header/header";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         <ReduxProvider>
           {/* <PersistGate loading={null} persistor={persistor}> */}
           <ModalProvider />
+          <Header />
           <Navbar />
           {children}
           <Footer />

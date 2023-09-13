@@ -1,9 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import * as lucide from "lucide-react";
+
 import { Category } from "@/types/types";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import NavItem from "./nav-item";
+import { useEffect, useState } from "react";
 
 interface MainNavProps {
   data: Category[];
@@ -11,14 +15,27 @@ interface MainNavProps {
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
-  console.log(data, "data,,,,,,,,,,,,,,,");
 
+  const homeRoute = {
+    href: "/",
+    isActive: pathname === "/",
+    icon: "home",
+    label: "For You",
+  };
+  // const Mew = lucide[x];
   const routes = data?.map((route) => ({
     href: `/category/${route.id}`,
     label: route.name,
     isActive: pathname === `/category/${route.id}`,
+    icon: route.icon,
   }));
-
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) {
+    return null;
+  }
   return (
     <nav
       className="
@@ -28,21 +45,9 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   space-x-4
   lg:space-x-6"
     >
+      <NavItem route={homeRoute} />
       {routes?.map((route) => (
-        <Link
-          key={route.href}
-          href={route.href}
-          className={cn(
-            `
-                text-sm
-                font-medium
-                transition-colors
-                hover:text-black`,
-            route.isActive ? "text-black" : "text-neutral-500"
-          )}
-        >
-          {route.label}
-        </Link>
+        <NavItem key={route.href} route={route} />
       ))}
     </nav>
   );
