@@ -8,8 +8,6 @@ interface IconProps extends LucideProps {
   name: keyof typeof dynamicIconImports;
 }
 const Icon: React.FC<IconProps> = ({ name, ...props }) => {
-  console.log(name);
-
   const LucideIcon = dynamic(dynamicIconImports[name]);
   return <LucideIcon {...props} />;
 };

@@ -1,12 +1,13 @@
 import Container from "@/components/ui/container";
-
-import HamburgerMenuBar from "./hamburger-menu-bar";
 import Logo from "./logo";
 import SearchBar from "./search-bar";
 import Account from "./account";
 import CartBag from "./cart-bag";
+import HamburgerMenuBar from "./hamburger-menu-bar";
 
-export default function Header() {
+export const revalidate = 0;
+
+const Header = () => {
   return (
     <Container>
       <div
@@ -22,8 +23,10 @@ export default function Header() {
     "
       >
         <HamburgerMenuBar />
+        {/* <PreviewOffCanvas isOpen={isOpen} /> */}
+        {/* <PreviewModal1 /> */}
         {/* logo */}
-        <Logo />
+        <Logo className="hidden lg:block" />
         {/* search bar */}
         <SearchBar />
         {/* account */}
@@ -33,4 +36,5 @@ export default function Header() {
       </div>
     </Container>
   );
-}
+};
+export default Header;

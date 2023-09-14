@@ -1,8 +1,13 @@
+import { cn } from "@/lib/utils";
 import { BaggageClaim } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 
-export default function Logo() {
+interface LogoProps {
+  className?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     // <Image
     //   className="
@@ -15,9 +20,17 @@ export default function Logo() {
     //   width={93}
     //   height={23}
     // />
-    <Link href="/" className="flex flex-col justify-center items-center mr-3">
+    <Link
+      href="/"
+      className={cn(
+        `flex flex-col justify-center items-center mr-3`,
+        className
+      )}
+    >
       <BaggageClaim className="text-primary " size={30} />
       <span className="text-xs">GlossaryFy</span>
     </Link>
   );
-}
+};
+
+export default Logo;
