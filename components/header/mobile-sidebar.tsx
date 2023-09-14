@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 
+import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { onChange } from "@/redux/features/offCanvasSlice";
 import Logo from "./logo";
@@ -61,7 +62,10 @@ const MobileSidebar = () => {
                             item.isActive && "bg-primary/50 text-secondary"
                           }`}
                         >
-                          <Icon name={item.icon} className="mr-2 h-4 w-4" />
+                          <Icon
+                            name={item.icon as keyof typeof dynamicIconImports}
+                            className="mr-2 h-4 w-4"
+                          />
                           <span>{item.label}</span>
                         </CommandItem>
                       </Link>

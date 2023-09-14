@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Icon from "@/components/icon";
+import dynamicIconImports from "lucide-react/dynamicIconImports";
 
 interface NavItemProps {
   route: {
@@ -39,7 +40,10 @@ const NavItem: React.FC<NavItemProps> = ({
           : "text-neutral border-b-[3px] border-b-transparent"
       )}
     >
-      <Icon name={iconName} strokeWidth={1} />
+      <Icon
+        name={iconName as keyof typeof dynamicIconImports}
+        strokeWidth={1}
+      />
       {label}
     </Link>
   );
