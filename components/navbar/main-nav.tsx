@@ -1,13 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import * as lucide from "lucide-react";
 
 import { Category } from "@/types/types";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import NavItem from "./nav-item";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { onAddCategories } from "@/redux/features/offCanvasSlice";
 
 interface MainNavProps {
   data: Category[];
@@ -15,6 +15,7 @@ interface MainNavProps {
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
+  const dispatch = useDispatch<AppDispatch>();
 
   const homeRoute = {
     href: "/",
@@ -22,7 +23,6 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
     icon: "home",
     label: "For You",
   };
-  // const Mew = lucide[x];
   const routes = data?.map((route) => ({
     href: `/category/${route.id}`,
     label: route.name,
@@ -35,6 +35,10 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   }, []);
   if (!isMounted) {
     return null;
+  }
+
+  if (routes) {
+    dispatch(onAddCategories([homeRoute, ...routes]));
   }
   return (
     <nav

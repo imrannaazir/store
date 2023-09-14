@@ -1,8 +1,11 @@
+"use client";
+
 import { useDispatch } from "react-redux";
-import Modal from "./ui/modal";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { closeModal } from "@/redux/features/modalSlice";
+
 import Gallery from "./gallery";
+import Modal from "./ui/modal";
 import Info from "./info";
 
 const PreviewModal = () => {

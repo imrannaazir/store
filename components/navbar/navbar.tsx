@@ -7,7 +7,7 @@ export const revalidate = 0;
 const Navbar = async () => {
   const categories = await getCategories();
   return (
-    <div className="">
+    <div className="hidden lg:block">
       <Container>
         <div
           className="

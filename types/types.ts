@@ -38,3 +38,10 @@ export interface Product {
   size: Size;
   images: Image[];
 }
+
+export interface MenuItem {
+  href: string;
+  isActive: boolean;
+  icon: string;
+  label: string;
+}

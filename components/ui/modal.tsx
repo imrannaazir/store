@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/redux/store";
 import { Transition, Dialog } from "@headlessui/react";
 import { Fragment } from "react";
 import IconButton from "./icon-button";
